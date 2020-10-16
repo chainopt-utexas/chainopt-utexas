@@ -1,0 +1,11 @@
+version: "3.4"
+services:
+    sut:
+        build:
+            context: .
+            target: test
+        image: ${DOCKER_REPO}:test
+        volumes:
+            - ./models:/app/models
+        command: pytest --cov-report xml:models/coverage.xml --cov .
+        
