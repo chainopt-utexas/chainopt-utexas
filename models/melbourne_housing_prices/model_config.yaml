@@ -1,0 +1,6 @@
+---
+  api_name: melbourne_housing_prices
+  paths:
+    primary_model: pred_house_prices.joblib
+    scoring: scoring.py
+    sample_input: house_prices_score.csv

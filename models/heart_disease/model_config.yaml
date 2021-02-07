@@ -1,0 +1,6 @@
+---
+  api_name: heart_disease
+  paths:
+    primary_model: pred_heart_disease.pkl
+    scoring: pred_heart_disease_scoring.py
+    sample_input: heart_disease_score.csv

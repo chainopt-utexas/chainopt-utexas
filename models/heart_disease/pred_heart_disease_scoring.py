@@ -1,25 +1,30 @@
 import pandas as pd
 from loguru import logger
 
-def score_model(model, input_data: pd.DataFrame) -> pd.DataFrame:
-    '''
-        Model that predicts heart disease in patients.
-    '''
-    logger.debug("Inside score_model method of scoring.py...")
-    
-    ### Start Prepare
-    X_score = input_data
+class Scorer:
+    def __init__(self,model):
+        #Do something here if you need to on initialization. This code will be run once on class instance creation.
+        logger.debug("Initialized Scorer")
 
-    ### End Prepare
+    def score_model(self, model, input_data: pd.DataFrame) -> pd.DataFrame:
+        '''
+            Model that predicts heart disease in patients.
+        '''
+        logger.debug("Inside score_model method of scoring.py...")
+        
+        ### Start Prepare
+        X_score = input_data
 
-    ### Start Predict
+        ### End Prepare
 
-    # Apply predictions to scoring file
-    dfOut = input_data
-    dfOut['tgt_heart_disease'] = model.predict(X_score)
+        ### Start Predict
 
-    output_data = dfOut
+        # Apply predictions to scoring file
+        dfOut = input_data
+        dfOut['tgt_heart_disease'] = model.predict(X_score)
 
-    ### End Predict
+        output_data = dfOut
 
-    return output_data
+        ### End Predict
+
+        return output_data
