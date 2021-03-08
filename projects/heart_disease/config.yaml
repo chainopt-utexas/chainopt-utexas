@@ -1,0 +1,5 @@
+desired_api_name: get_disease_prediction #optional
+code_path: pred_heart_disease_scoring.py #required
+function_name: predict_heart_disease #required
+function_description: "Model that predicts the likelihood of heart disease among patients." #optional
+sample_input_file: heart_disease_score.csv #required

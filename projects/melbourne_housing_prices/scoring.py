@@ -1,18 +1,22 @@
 import pandas as pd
-from loguru import logger
 import os
+import joblib
 
-def score_model(model, input_data: pd.DataFrame) -> pd.DataFrame:
+def predict_price(house_metadata):
     '''
         Model that predicts the prices of houses in the Melbourne housing market. Test case for joblib format with CSV input and embedded model
     '''
-    logger.debug("Inside score_model method of scoring.py...")
+    # Load Pretrained Model
+    model_filepath = os.path.join(os.path.dirname(__file__), 'pred_house_prices.joblib')
+    pretrained_model_file = open(model_filepath, 'rb')
+    pretrained_model = joblib.load(pretrained_model_file) 
+    pretrained_model_file.close()
     
     # Temp file paths
     temp_le_model_filepath = os.path.join(os.path.dirname(__file__), 'temp/labelencoding.pkl')
 
     ### Start Prepare
-    X_score = input_data
+    X_score = house_metadata
 
     # Prepare numeric columns
     colsNum = ['Rooms','Distance','Postcode','Bedroom2','Bathroom','Car','Landsize','BuildingArea','YearBuilt','Lattitude','Longtitude','Propertycount']
@@ -38,10 +42,8 @@ def score_model(model, input_data: pd.DataFrame) -> pd.DataFrame:
 
     ### Start Predict
 
-    dfOut = model.predict(Xle_score[colsNum+colsCat])
-
-    output_data = dfOut
+    dfOut = pretrained_model.predict(Xle_score[colsNum+colsCat])
 
     ### End Predict
 
-    return output_data
+    return dfOut

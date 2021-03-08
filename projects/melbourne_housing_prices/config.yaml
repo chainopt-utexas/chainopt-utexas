@@ -1,0 +1,5 @@
+desired_api_name: get_house_price #optional
+code_path: scoring.py #required
+function_name: predict_price #required
+function_description: "Model that predicts the prices of houses in the Melbourne housing market. Test case for joblib format with CSV input and embedded model." #optional
+sample_input_file: house_prices_score.csv #required
