@@ -6,6 +6,6 @@ services:
             target: test
         image: ${DOCKER_REPO}:test
         volumes:
-            - ./projects:/app/models
+            - ./models:/app/models
         command: pytest --cov-report xml:models/coverage.xml --cov .
         
