@@ -2,15 +2,15 @@
 
 export DOCKER_CLIENT_TIMEOUT=180
 export COMPOSE_HTTP_TIMEOUT=180
-export CURDATE=$(date '+%Y%m%d')
+export CURDATE=$(date '+%Y%m%d%H%M')
 
 # Also push the test docker image
 docker-compose -f docker-compose.test.yml push
 
 # tag image with date version
-docker tag $IMAGE_NAME $DOCKER_REPO:$CURDATE
+docker tag $IMAGE_NAME $DOCKER_REPO:release-$CURDATE
 docker tag $DOCKER_REPO:test $DOCKER_REPO:test-$CURDATE
-docker push $DOCKER_REPO:$CURDATE
+docker push $DOCKER_REPO:release-$CURDATE
 docker push $DOCKER_REPO:test-$CURDATE
 
 # Also upload the test coverage report, make sure the build environment variables in docker hub set the upload token below
